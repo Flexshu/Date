@@ -1,14 +1,20 @@
 #include "Date.hpp"
 
 
-Date::Date() { 
-    auto sec = time(0);
-    tm* obj = new tm;
-    obj = localtime(&sec);
-    day = obj->tm_mday;
-    month = obj->tm_mon + 1;
-    year = obj->tm_year + 1900;
-    delete obj;
+Date::Date() {
+    time_t sec = time(0);
+    struct tm timeinfo;
+    
+    if (localtime_r(&sec, &timeinfo) != nullptr) {
+        day = timeinfo.tm_mday;
+        month = timeinfo.tm_mon + 1;
+        year = timeinfo.tm_year + 1900;
+    }
+    else {
+        day = 1;
+        month = 1;
+        year = 2000;
+    }
 }
 
 Date::Date(int year, int month, int day) { 
