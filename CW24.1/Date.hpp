@@ -12,6 +12,8 @@ class Date
 public:
     Date();
     Date(int year, int month, int day);
+    
+    Date& operator = (const Date& obj);
 
     bool isLeapYear()const;
     int monthDays()const;

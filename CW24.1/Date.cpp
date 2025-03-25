@@ -17,6 +17,13 @@ Date::Date(int year, int month, int day) {
     this->day = day;
 }
 
+Date &Date::operator=(const Date &obj) {
+    this->year = obj.year;
+    this->month = obj.month;
+    this->day = obj.day;
+    return *this;
+}
+
 bool Date::isLeapYear() const { 
     return (year % 4 == 0 && year % 100 != 0) || (year % 100 == 0 && year % 400 == 0);
 }
